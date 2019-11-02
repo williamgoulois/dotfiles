@@ -1,2 +1,9 @@
-anaconda3/
+# Ignore everything
+*
+
+# But not these files...
+!*.vimrc
+!*.vim
+!*.bashrc
+!.gitignore
 
