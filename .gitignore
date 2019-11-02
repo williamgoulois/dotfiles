@@ -7,3 +7,9 @@
 !*.bashrc
 !.gitignore
 
+!.config/
+!gestures/
+!run_scales/
+!vimrc_old
+!mount_PcEnsimag
+!umount_PcEnsimag
