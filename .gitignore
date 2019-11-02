@@ -1,15 +1,20 @@
 # Ignore everything
-*
+/*
 
-# But not these files...
-!*.vimrc
-!*.vim
-!*.bashrc
+# But not .gitignore...
 !.gitignore
 
-!.config/
-!gestures/
-!run_scales/
+#Config folders without bug
+!/.vim
+/.vim/view
+/.vim/plugged
+#!/.config
+#/.config/enchant
+#/.config/Atom
+
+#Files in home
+!.vimrc
+!.bashrc
 !vimrc_old
 !mount_PcEnsimag
 !umount_PcEnsimag
