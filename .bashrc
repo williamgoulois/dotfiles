@@ -1,7 +1,12 @@
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
-
+alias ll="ls -lhaG"
+alias data="cd /media/DATA"
+alias seoc="cd /media/DATA/2ASEOC"
+alias secu="cd /media/DATA/2ASEOC/SDSR"
+alias poo="cd /media/DATA/2ASEOC/POO"
+alias dico="cd /media/DATA/2ASEOC/projet-dico"
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
