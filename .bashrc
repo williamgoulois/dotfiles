@@ -3,6 +3,7 @@
 # for examples
 alias ll="ls -lhaG"
 alias data="cd /media/DATA"
+alias jcp="cd /media/DATA/Documents/JCP"
 alias seoc="cd /media/DATA/2ASEOC"
 alias secu="cd /media/DATA/2ASEOC/SDSR"
 alias poo="cd /media/DATA/2ASEOC/POO"
