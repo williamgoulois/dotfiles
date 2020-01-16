@@ -49,7 +49,7 @@ if nmcli connection show --active |awk '{print $2}'|grep $uuid_vpnensimag
 then
           sleep 5
 	  echo "Mounting PCEnsimag"
-          sshfs gouloisw@pcserveur.ensimag.fr: /media/pcensimag
+          sshfs gouloisw@pcserveur.ensimag.fr:/matieres/4MMOGL/GL /media/pcensimag
 	  echo "Successfully Mounted"
       
         #  umount -l /media/pcensimag

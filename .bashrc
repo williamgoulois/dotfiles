@@ -2,12 +2,28 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 alias ll="ls -lhaG"
-alias data="cd /media/DATA"
-alias jcp="cd /media/DATA/Documents/JCP"
-alias seoc="cd /media/DATA/2ASEOC"
-alias secu="cd /media/DATA/2ASEOC/SDSR"
-alias poo="cd /media/DATA/2ASEOC/POO"
-alias dico="cd /media/DATA/2ASEOC/projet-dico"
+alias data="cd /media/veracrypt1"
+alias jcp="cd /media/veracrypt1/Documents/JCP"
+alias doc="cd /media/veracrypt1/Documents"
+alias secu="cd /media/veracrypt1/2ASEOC/SDSR"
+alias seoc="cd /media/veracrypt1/2ASEOC"
+alias eni="cd /media/veracrypt1/2ASEOC/ENI"
+alias poo="cd /media/veracrypt1/2ASEOC/POO"
+alias pdi="cd /media/veracrypt1/2ASEOC/PDI"
+alias sepc="cd /media/veracrypt1/2ASEOC/SEPC"
+alias pcsef="cd /media/veracrypt1/2ASEOC/PCSEF"
+alias dico="cd /media/veracrypt1/2ASEOC/projet-dico"
+
+#For ProjetGL
+alias ima="ima-x86_64-Linux"
+alias gl="cd /media/veracrypt1/2ASEOC/gl52"
+alias transgl="cd /media/veracrypt1/2ASEOC/GL/doc/stage"
+alias docgl="nohup evince /media/veracrypt1/2ASEOC/GL/doc/poly-projet-GL.pdf & exit"
+
+#For john the ripper
+alias john="/media/DATA/2ASEOC/SDSR/john/run/john"
+#. /media/DATA/2ASEOC/SDSR/john/run/john.bash_completion
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -136,4 +152,9 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
+#PATH=/media/veracrypt1/2ASEOC/GL/bin:"$PATH"
+PATH=/media/veracrypt1/2ASEOC/gl52/src/main/bin:"$PATH"
+PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script:"$PATH"
+PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script/launchers:"$PATH"
+PATH=/media/veracrypt1/2ASEOC/gl52/ima/bin:"$PATH"
+export PATH
