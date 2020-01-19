@@ -15,7 +15,6 @@ alias pcsef="cd /media/veracrypt1/2ASEOC/PCSEF"
 alias dico="cd /media/veracrypt1/2ASEOC/projet-dico"
 
 #For ProjetGL
-alias ima="ima-x86_64-Linux"
 alias gl="cd /media/veracrypt1/2ASEOC/gl52"
 alias transgl="cd /media/veracrypt1/2ASEOC/GL/doc/stage"
 alias docgl="nohup evince /media/veracrypt1/2ASEOC/GL/doc/poly-projet-GL.pdf & exit"
@@ -158,3 +157,15 @@ PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script:"$PATH"
 PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script/launchers:"$PATH"
 PATH=/media/veracrypt1/2ASEOC/gl52/ima/bin:"$PATH"
 export PATH
+
+#fuck
+eval "$(thefuck --alias)"
+
+#PS1="\[\e[1;31m\]\u\[\e[1;34m\]@\[\e[1;32m\]\h\[\e[1;34m\]:\[\e[1;33m\]\w\[\e[0m\]\$ "
+function _update_ps1() {
+    PS1=$(powerline-shell $?)
+}
+
+if [[ $TERM != linux && ! $PROMPT_COMMAND =~ _update_ps1 ]]; then
+    PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
+fi
