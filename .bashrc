@@ -155,7 +155,7 @@ unset __conda_setup
 PATH=/media/veracrypt1/2ASEOC/gl52/src/main/bin:"$PATH"
 PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script:"$PATH"
 PATH=/media/veracrypt1/2ASEOC/gl52/src/test/script/launchers:"$PATH"
-PATH=/media/veracrypt1/2ASEOC/gl52/ima/bin:"$PATH"
+PATH=/media/veracrypt1/2ASEOC/gl52/imaaa/bin:"$PATH"
 export PATH
 
 #fuck
