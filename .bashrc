@@ -12,6 +12,7 @@ alias poo="cd /media/veracrypt1/2ASEOC/POO"
 alias pdi="cd /media/veracrypt1/2ASEOC/PDI"
 alias sepc="cd /media/veracrypt1/2ASEOC/SEPC"
 alias pcsef="cd /media/veracrypt1/2ASEOC/PCSEF"
+alias pcsea="cd /media/veracrypt1/2ASEOC/PCSEA"
 alias dico="cd /media/veracrypt1/2ASEOC/projet-dico"
 
 #For ProjetGL
