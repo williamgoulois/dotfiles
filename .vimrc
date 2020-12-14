@@ -16,10 +16,15 @@
 
 "" after that copy this file as your ~/.vimrc and execute :PlugInstall
 
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 set nocompatible
 filetype off
 
-"call plug#begin('/etc/vim/plugged') " at ensimag
 call plug#begin('~/.vim/plugged') " on your own machine
 
 Plug 'tpope/vim-sensible' " sane defaults
@@ -41,9 +46,6 @@ Plug 'autozimu/LanguageClient-neovim', {
 " rust
 Plug 'rust-lang/rust.vim' " syntax highlighting
 Plug 'mattn/webapi-vim' " used for rust playpen
-
-" A Vim Plugin for Lively Previewing LaTeX PDF Output
-Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
 
 
 " not essential
@@ -67,11 +69,13 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>\<cr>" : "\<cr>"
 
 " ultisnips default bindings compete with completor's tab
 " so we need to remap them
-let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsExpandTrigger="<c-t>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
+ let g:UltiSnipsEditSplit="vertical"
+
 " airline :
 " for terminology you will need either to export TERM='xterm-256color'
 " or run it with '-2' option
@@ -94,7 +98,6 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=4
 set expandtab
-
 
 "Keybindings
 noremap <C-c> "+y :let @+=@*<CR>
@@ -119,7 +122,7 @@ au BufWrite *.c call LanguageClient#textDocument_formatting()
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'python': ['pyls'],
-    \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+    \ 'rust': ['rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'go': ['go-langserver'],
     \ 'c' : ['clangd'] }
