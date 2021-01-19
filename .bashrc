@@ -2,12 +2,14 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 #alias remountSD="$HOME/scripts/remount_SDCARD"
-
+alias msfconsole="msfconsole --quiet -x \"db_connect ${USER}@msf\""
 alias sshensimag="ssh gouloisw@pcserveur.ensimag.fr"
+alias sshXensimag="ssh -X gouloisw@pcserveur.ensimag.fr"
 alias sftpensimag="sftp gouloisw@pcserveur.ensimag.fr"
 alias opentrackerdebug="/mnt/DATA/3ASEOC/ProjetReseau/opentracker/opentracker.debug"
 alias vuze="cd /mnt/DATA/3ASEOC/ProjetReseau/equipe4/bittorensimag && java -jar /mnt/DATA/3ASEOC/ProjetReseau/vuze/Azureus2.jar --ui=console"
 alias torrents="cd /mnt/DATA/3ASEOC/ProjetReseau/equipe4/bittorensimag/src/test/exampleTorrents"
+alias ssi="cd /mnt/DATA/3ASEOC/SSI"
 
 alias ..="cd .."
 alias config="vim ~/.config/i3/config"
@@ -236,6 +238,9 @@ export REACT_EDITOR=vscode
 export PATH=$PATH:$HOME/scripts
 export PATH=$PATH:$HOME/icons
 calc() { awk "BEGIN{print $*}"; }
+based () {
+  echo "$1" | base64 -d ; echo
+}
 
 PATH="/home/william/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/william/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
