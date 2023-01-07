@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# {{ template "scripts-library" }}
+
+# The following line is for ShellCheck to correctly identify the above include
+true || source ../.chezmoitemplates/scripts-library
+
+log_task "Changing .gnupg permissions to 700"
+FILE="$HOME/.gnupg"
+if [ -f "$FILE" ]; then
+    if [ "$(stat -c %a "$FILE")" != "700" ] ; then
+        chmod 700 "$FILE"
+        log_success ".gnupg permissions changed to 700"
+    else
+        log_success ".gnupg permissions are 700"
+    fi
+fi

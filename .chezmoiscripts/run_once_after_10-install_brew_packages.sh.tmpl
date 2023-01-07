@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# {{ template "scripts-library" }}
+
+# The following line is for ShellCheck to correctly identify the above include
+true || source ../.chezmoitemplates/scripts-library
+
+log_blue "Brew packages installation."
+
+log_task "Checking for git..."
+localGit="$(which git)"
+if [ -f "$localGit" ]
+then
+  log_success "Git is installed"
+else
+  log_error "Invalid git installation. Please install git."
+  exit 1
+fi
+
+log_task "Checking for Homebrew..."
+brew="/usr/local/bin/brew"
+if [ -f "$brew" ]
+then
+  log_success "Skip, already installed"
+else
+  log_task "Installing Homebrew"
+  c /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+  if [ -f "$brew" ]
+  then
+    log_task "Checking for Homebrew..."
+    log_success "Homebrew is in $brew"
+  else
+    log_error "Homebrew installation failed. Cannot continue installation."
+    exit 1
+  fi
+fi
+
+log_task "Installing brew packages and casks..."
+if [ -f "$brew" ]
+then
+  c brew bundle
+fi
+log_success "Homebrew packages installed"
