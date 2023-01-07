@@ -248,4 +248,3 @@ export SDKMAN_DIR="/Users/williamgoulois/.sdkman"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
-

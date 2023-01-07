@@ -1,0 +1,15 @@
+.idea
+.node-version
+.DS_STORE
+.vim
+.node-version
+
+*.iml
+.tool_versions
+.project
+.classpath
+.settings
+.factorypath
+
+*.vimsession
+.vimspector.json
