@@ -1,0 +1,80 @@
+[user]
+	name = {{ .fullName }}
+  email = {{ .email }}
+	signingkey = {{ .gpgSigningKey }}
+
+[core]
+	; editor = codium --wait
+  editor = lvim
+	excludesfile = ~/.gitignore_global
+	ignorecase = false
+
+[push]
+	default = simple
+[pull]
+	rebase = true
+[rerere]
+	enabled = true
+
+#Diff
+[diff]
+	tool = nvimdiff2
+[difftool]
+  trustExitCode = true
+[difftool "nvimdiff2"]
+  cmd = -d $LOCAL $REMOTE
+
+#Merge
+[merge]
+	conflictstyle = diff3
+[merge]
+	tool = nvimdiff4 
+# Vanilla merge
+[mergetool "nvimdiff4"]
+  cmd = lvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  trustExitCode = true
+# Fugitive merge
+; [mergetool "nfugitive"]
+  ; cmd = lvim -f -c "Gdiff" "$MERGED"
+
+#Sign commits
+[gpg]
+	program = /usr/local/bin/gpg
+[commit]
+	gpgsign = true
+[credential]
+	helper = osxkeychain
+
+[alias]
+  #resign commits starting from sha
+  resign = rebase --exec 'git commit --amend --no-edit -n -S' -i
+
+#Colors
+[color]
+	branch = auto
+	status = auto
+	diff = auto
+  interactive = auto
+
+[color "branch"]
+	current = yellow reverse
+	local = yellow
+	remote = green
+
+[color "diff"]
+	meta = yellow bold
+	frag = magenta bold
+	old = red bold
+	new = green bold
+
+[color "status"]
+	added = green
+	changed = yellow
+	untracked = blue
+
+[init]
+	defaultBranch = main
+; [remote "origin"]
+; 	fetch = +refs/heads/*:refs/remotes/origin/*
+[http]
+	postBuffer = 524288000

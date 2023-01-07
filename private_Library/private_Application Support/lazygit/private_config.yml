@@ -1,0 +1,71 @@
+os:
+  editCommand: "lvim"
+  openCommand: "codium -rg {{filename}}"
+customCommands:
+  - key: "f"
+    command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
+    context: "commitFiles"
+    description: "Compare (difftool) with local copy"
+  - key: "E"
+    description: "Add empty commit"
+    context: "commits"
+    command: 'git commit --allow-empty -m "empty commit"'
+    loadingText: "Committing empty commit..."
+  - key: "C"
+    command: "git cz c"
+    description: "commit with commitizen"
+    context: "files"
+    loadingText: "opening commitizen commit tool"
+    subprocess: true
+  - key: "M"
+    command: "git mergetool {{ .SelectedFile.Name }}"
+    context: "files"
+    loadingText: "opening git mergetool"
+    subprocess: true
+  - key: "<c-space>" # couldn't think of a better keybinding
+    prompts:
+      - type: "input"
+        title: "PR id:"
+    command: "gh pr checkout {{index .PromptResponses 0}}"
+    context: "localBranches"
+    loadingText: "checking out PR"
+  - key: "<c-p>"
+    command: "git remote prune {{.SelectedRemote.Name}}"
+    context: "remotes"
+    loadingText: "Pruning..."
+    description: "prune deleted remote branches"
+  - key: "<c-P>"
+    description: "Push to a specific remote repository"
+    context: "global"
+    loadingText: "Pushing ..."
+    prompts:
+      - type: "menuFromCommand"
+        title: "Which remote repository to push to?"
+        command: bash -c "git remote --verbose | grep '/.* (push)'"
+        filter: '(?P<remote>.*)\s+(?P<url>.*) \(push\)'
+        valueFormat: "{{ .remote }}"
+        labelFormat: "{{ .remote | bold | cyan }} {{ .url }}"
+      - type: "menu"
+        title: "How to push?"
+        options:
+          - value: "push"
+          - value: "push --force-with-lease"
+          - value: "push --force"
+
+  - key: "r"
+    prompts:
+      - type: "input"
+        title: "Rename stash"
+        initialValue: "{{.SelectedStashEntry.Name}}"
+    command: "git stash drop {{.SelectedStashEntry.RefName}} | sed -E 's/.*\\(([0-9a-f]+)\\).*/\\1/' | xargs git stash store -m '{{index .PromptResponses 0}}'"
+    context: stash
+git:
+  paging:
+    colorArg: always
+    pager: delta --features side-by-side --syntax-theme 'Visual Studio Dark+' --file-decoration-style=none --hunk-header-style=omit --paging=never
+  parseEmoji: true
+  diffContextSize: 4 # how many lines of context are shown around a change in diffs
+gui:
+  showIcons: true
+  sidePanelWidth: 0.2 # gives you more space to show things side-by-side
+promptToReturnFromSubprocess: false

@@ -1,0 +1,9 @@
+
+[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+. "$HOME/.cargo/env"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/williamgoulois/.sdkman"
+[[ -s "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh"

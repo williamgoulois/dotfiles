@@ -1,0 +1,251 @@
+# Options {{{
+setopt extended_glob
+
+stty -ixon
+# }}}
+
+# function zvm_config() {
+#   ZVM_KEYTIMEOUT=0.20 #default is 0.4 sec
+#   ZVM_ESCAPE_KEYTIMEOUT=0.001 #default is 0.03 sec
+# }
+# source "/usr/local/opt/zsh-vi-mode/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh"
+
+source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export LC_ALL=en_US.UTF-8
+export FZF_DEFAULT_OPTS="--height=50% --min-height=15 --reverse"
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+
+export GPG_TTY=`tty`
+export EDITOR="lvim"
+export VISUAL="lvim"
+eval $(thefuck --alias)
+eval "$(rbenv init -)"
+
+SPACESHIP_PROMPT_ORDER=(
+  #time          # Time stamps section
+  user          # Username section
+  host          # Hostname section
+  dir           # Current directory section
+  git           # Git section (git_branch + git_status)
+  #hg            # Mercurial section (hg_branch  + hg_status)
+  package       # Package version
+  node          # Node.js section
+  ruby          # Ruby section
+  #elixir        # Elixir section
+  #xcode         # Xcode section
+  #swift         # Swift section
+  #golang        # Go section
+  #php           # PHP section
+  rust          # Rust section
+  #haskell       # Haskell Stack section
+  #julia         # Julia section
+  docker        # Docker section
+  aws           # Amazon Web Services section
+  venv          # virtualenv section
+  #conda         # conda virtualenv section
+  #pyenv         # Pyenv section
+  #dotnet        # .NET section
+  #ember         # Ember.js section
+  #kubecontext   # Kubectl context section
+  #terraform     # Terraform workspace section
+  exec_time     # Execution time
+  line_sep      # Line break
+  battery       # Battery level and status
+  vi_mode       # Vi-mode indicator
+  jobs          # Background jobs indicator
+  exit_code     # Exit code section
+  char          # Prompt character
+)
+SPACESHIP_GIT_STATUS_COLOR=145
+
+# VI Mode
+bindkey -v
+KEYTIMEOUT=1
+SPACESHIP_VI_MODE_INSERT="\uf8ea"
+SPACESHIP_VI_MODE_NORMAL="\uf6b5"
+
+function zle-keymap-select zle-line-init # only reset cursor when init and select (not finish)
+{
+  case $KEYMAP in
+      vicmd)      print -n '\033[2 q';; # block cursor 1 with blick 2 without
+      viins|main) print -n '\033[6 q';; # line cursor 5 with blink 6 without
+  esac
+
+  zle reset-prompt
+  zle -R
+}
+
+function zle-line-finish
+{
+  print -n '\033[2 q'; # block cursor 1 with blick 2 without
+}
+
+zle -N zle-line-init
+zle -N zle-line-finish
+zle -N zle-keymap-select
+
+bindkey -M viins "^R" fzf-history-widget # restore ^R with vi mode
+bindkey -M viins "^T" fzf-file-widget # restore ^T with vi mode
+bindkey -M viins '^[[A' history-substring-search-up
+bindkey -M viins '^[[B' history-substring-search-down
+
+# alias
+alias :q="tmux kill-session"
+alias bc="brew cleanup"
+alias bd="brew doctor"
+alias bi="brew install"
+alias bic="brew install --cask"
+alias bif="brew info"
+alias bifc="brew info --cask"
+alias bo="brew outdated"
+alias bs="brew services"
+alias bsr="brew services restart"
+alias bu="brew update"
+alias bug="brew upgrade"
+alias c="clear"
+alias cl="clear"
+alias claer="clear"
+alias clera="clear"
+alias cx="chmod +x"
+alias dc="docker compose"
+alias dcd="docker compose down -v"
+alias dcr="docker compose restart"
+alias dcu="docker compose up -d" 
+alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}'"
+alias e="exit"
+# alias ee="espanso edit"
+# alias er="espanso restart"
+alias f="fuck"
+alias g="git status"
+alias ga="git add ."
+alias gb="git branch -v"
+alias gc="git commit -S -m"
+alias gca="git commit -S -av -m"
+alias gcl="git clone"
+alias gcn="git commit -S --no-verify -m"
+alias gco="git checkout -b"
+alias gd="git diff"
+alias gex="lvim .git/info/exclude"
+alias gf="git fetch --all"
+alias gl="git pull"
+alias gp="git push"
+alias gpt="git push --tags"
+alias gpc="gh pr checkout"
+alias gpum="git pull upstream master"
+alias gr="git rebase"
+alias gra="git remote add"
+alias grao="git remote add origin"
+alias grau="git remote add upstream"
+alias grH="git reset HEAD~"
+alias gri="git rebase -i"
+alias grm="git rebase main"
+alias gro="git rebase --onto"
+alias grv="git remote -v"
+alias gs="git status"
+alias gst="git status"
+alias gt="git tag"
+alias gw="git worktree"
+alias gwa="git worktree add"
+alias gwl="git worktree list"
+alias gwr="git worktree remove"
+alias gwp="git worktree prune"
+alias h="history"
+alias l="lsd --group-dirs first"
+alias la="lsd --group-dirs first -A"
+alias ld="lazydocker"
+alias lg="lazygit"
+alias ll="lsd --group-dirs first -Al"
+alias ls="lsd --group-dirs first"
+alias lt="lsd --group-dirs last -A --tree"
+alias n="lvim"
+alias nk="lvim ~/.config/karabiner/karabiner.json"
+alias nl="lvim ~/.config/lvim/config.lua"
+alias np="lvim package.json"
+alias npc="lvim +PackerCompile"
+alias nps="lvim +PackerSync"
+alias nt="lvim ~/.config/tmux/tmux.conf"
+alias nz="lvim ~/.zshrc"
+alias pnx="pnpm exec nx"
+alias pi="pnpm install"
+alias pa="pnpm add"
+alias pd="pnpm dev"
+alias pb="pnpm build"
+alias st="tmux source ~/.config/tmux/tmux.conf"
+alias sz="source ~/.zshrc"
+alias t="tmux"
+alias ta="tmux a"
+alias tat="tmux attach -t"
+alias tl="tmux list-sessions"
+alias tn='tmux new -s `(pwd | sed "s/.*\///g")`'
+alias tns="tmux new -s"
+alias vt="lvim ~/.config/tmux/tmux.conf"
+alias y="yarn"
+alias ya="yarn add"
+alias yad="yarn add -D"
+alias yb="yarn build"
+alias ybs="yarn build-storybook"
+alias yc="yarn check-all"
+alias yca="yarn check-architecture"
+alias ycf="yarn check-format"
+alias ycl="yarn check-lint"
+alias yco="yarn check-oas"
+alias yct="yarn check-types"
+alias yd="yarn dev"
+alias ydb="yarn b run debug"
+alias ydh="yarn dev-https"
+alias ye="yarn e2e"
+alias yf="yarn format"
+alias yg="yarn generate"
+alias ygt="yarn generate-types"
+alias yl="yarn lint"
+alias ym="yarn b run migration:migrate" #for mk2 only
+alias yo="yarn openapi-typescript http://localhost:3001/openapi/current.json --output src/core/generated/backend-spec.ts && yarn eslint --fix src/core/generated/ && yarn prettier --write src/core/generated" #for mk2 only
+alias ys="yarn start"
+alias ysb="yarn storybook"
+alias yt="yarn test"
+alias unsetbase="git config --local --get-regexp '\.gh-resolved$' | cut -f1 -d' ' | xargs -L1 git config --unset "
+alias touchBarKill="sudo pkill TouchBarServer; sudo killall ControlStrip"
+
+# Variables
+export PATH="$PATH:${HOME}/.local/bin"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export PATH=$HOME/.config/nvim/utils/bin:$PATH
+export NODE_PATH=$HOME/.nvm/versions/node/
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+export SNDCPY_HOME=$HOME/sndcpy
+export SNDCPY_APK=$HOME/sndcpy/sndcpy.apk
+
+export LUNARVIM_RUNTIME_DIR=$HOME/.local/share/lunarvim
+export LUNARVIM_CONFIG_DIR=$HOME/.config/lvim
+export LUNARVIM_CACHE_DIR=$HOME/.cache/lvim
+
+export PNPM_HOME="/Users/williamgoulois/Library/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+
+export PATH="$PATH:${HOME}/.cargo/bin"
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/williamgoulois/.sdkman"
+[[ -s "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh"
+
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)
