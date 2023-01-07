@@ -212,11 +212,10 @@ alias touchBarKill="sudo pkill TouchBarServer; sudo killall ControlStrip"
 # Variables
 export PATH="$PATH:${HOME}/.local/bin"
 
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-export PATH=$HOME/.config/nvim/utils/bin:$PATH
-export NODE_PATH=$HOME/.nvm/versions/node/
+
+# fnm
+export PATH="/Users/williamgoulois/Library/Application Support/fnm:$PATH"
+eval "`fnm env`"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -249,3 +248,4 @@ export SDKMAN_DIR="/Users/williamgoulois/.sdkman"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
