@@ -1,29 +1,29 @@
 [".config/nvim"]
     type = "git-repo"
-    url = "https://github.com/LunarVim/nvim-basic-ide"
+    url = "git@github.com:LunarVim/nvim-basic-ide"
     refreshPeriod = "168h"
 
 [".config/lvim"]
     type = "git-repo"
-    url = "https://github.com/williamgoulois/lvim-config"
+    url = "git@github.com:williamgoulois/lvim-config"
 
 [".local/share/lunarvim/lvim"]
     type = "git-repo"
-    url = "https://github.com/williamgoulois/LunarVim.git"
+    url = "git@github.com:williamgoulois/LunarVim.git"
 
 [".config/alacritty/colors"]
     type = "git-repo"
-    url = "https://github.com/eendroroy/alacritty-theme.git"
+    url = "git@github.com:eendroroy/alacritty-theme.git"
     refreshPeriod = "168h"
 
 [".zprezto"]
     type = "git-repo"
-    url = "https://github.com/sorin-ionescu/prezto.git"
+    url = "git@github.com:sorin-ionescu/prezto.git"
     [".zprezto".clone]
         args = ["--recursive"]
 
 [".zprezto/contrib"]
     type = "git-repo"
-    url = "https://github.com/belak/prezto-contrib.git"
+    url = "git@github.com:belak/prezto-contrib.git"
     [".zprezto/contrib".clone]
         args = ["--recurse-submodules"]
