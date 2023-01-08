@@ -18,7 +18,7 @@ else
 fi
 
 log_task "Checking for Homebrew..."
-brew="/usr/local/bin/brew"
+brew="$(which brew)"
 if [ -f "$brew" ]
 then
   log_success "Skip, already installed"
