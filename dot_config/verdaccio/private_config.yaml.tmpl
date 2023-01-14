@@ -9,7 +9,7 @@
 # https://verdaccio.org/docs/best
 
 # path to a directory with all packages
-storage: /Users/williamgoulois/.local/share/verdaccio/storage
+storage: /Users/{{ .user }}/.local/share/verdaccio/storage
 # path to a directory with plugins to include
 plugins: ./plugins
 
@@ -174,7 +174,8 @@ server:
 #   method: POST
 #   headers: [{ "Content-Type": "application/json" }]
 #   endpoint: https://usagge.hipchat.com/v2/room/3729485/notification?auth_token=mySecretToken
-#   content: '{"color":"green","message":"New package published: * {{ name }}*","notify":true,"message_format":"text"}'
+#   WARN: I had to modify this to not trigger chezmoi templates
+#   content: '{"color":"green","message":"New package published: * \{\{ name \}\}*","notify":true,"message_format":"text"}'
 
 middlewares:
   audit:

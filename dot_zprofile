@@ -66,3 +66,5 @@ fi
 alias killtb='pkill "Touch Bar agent"; killall "ControlStrip"'
 
 export BAT_THEME="Dracula"
+# Set PATH, MANPATH, etc., for Homebrew.
+eval "$(/opt/homebrew/bin/brew shellenv)"

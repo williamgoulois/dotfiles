@@ -214,8 +214,9 @@ export PATH="$PATH:${HOME}/.local/bin"
 
 
 # fnm
-export PATH="/Users/williamgoulois/Library/Application Support/fnm:$PATH"
+export PATH="$HOME/Library/Application Support/fnm:$PATH"
 eval "`fnm env`"
+export NODE_PATH="$FNM_MULTISHELL_PATH/bin/node"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/emulator
@@ -234,7 +235,7 @@ export LUNARVIM_RUNTIME_DIR=$HOME/.local/share/lunarvim
 export LUNARVIM_CONFIG_DIR=$HOME/.config/lvim
 export LUNARVIM_CACHE_DIR=$HOME/.cache/lvim
 
-export PNPM_HOME="/Users/williamgoulois/Library/pnpm"
+export PNPM_HOME="$HOME/Library/pnpm"
 export PATH="$PNPM_HOME:$PATH"
 
 export PATH="$PATH:${HOME}/.cargo/bin"
@@ -242,8 +243,8 @@ export PATH="$PATH:${HOME}/.cargo/bin"
 export PATH="$PATH:$HOME/.rvm/bin"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/williamgoulois/.sdkman"
-[[ -s "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/williamgoulois/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
 # Load Angular CLI autocompletion.
