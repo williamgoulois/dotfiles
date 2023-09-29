@@ -17,6 +17,15 @@ source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 export LC_ALL=en_US.UTF-8
 export FZF_DEFAULT_OPTS="--height=50% --min-height=15 --reverse"
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore-vcs --hidden'
+export FZF_CTRL_T_OPTS="
+  --preview 'bat -n --color=always {}'
+  --bind 'ctrl-/:change-preview-window(down|hidden|)'
+  --color header:italic
+  --header 'Press CTRL-/ to toggle preview style'"
+
+export FZF_CTRL_R_OPTS='
+  --color header:italic
+  --header "'\''word=exact \^word=start .ts\$=end !word=inverse"'
 
 export GPG_TTY=`tty`
 export EDITOR="lvim"
@@ -93,7 +102,7 @@ bindkey -M viins '^[[A' history-substring-search-up
 bindkey -M viins '^[[B' history-substring-search-down
 
 # alias
-alias :q="tmux kill-session"
+alias :q="tmux kill-pane"
 alias bc="brew cleanup"
 alias bd="brew doctor"
 alias bi="brew install"
@@ -169,10 +178,12 @@ alias nps="lvim +PackerSync"
 alias nt="lvim ~/.config/tmux/tmux.conf"
 alias nz="lvim ~/.zshrc"
 alias pnx="pnpm exec nx"
-alias pi="pnpm install"
-alias pa="pnpm add"
-alias pd="pnpm dev"
-alias pb="pnpm build"
+alias pni="pnpm install"
+alias pna="pnpm add"
+alias pnd="pnpm dev"
+alias pnb="pnpm build"
+alias pns="pnpm start"
+alias pnt="pnpm test"
 alias st="tmux source ~/.config/tmux/tmux.conf"
 alias sz="source ~/.zshrc"
 alias t="tmux"
@@ -203,15 +214,17 @@ alias ygt="yarn generate-types"
 alias yl="yarn lint"
 alias ym="yarn b run migration:migrate" #for mk2 only
 alias yo="yarn openapi-typescript http://localhost:3001/openapi/current.json --output src/core/generated/backend-spec.ts && yarn eslint --fix src/core/generated/ && yarn prettier --write src/core/generated" #for mk2 only
+alias yp="yarn preview"
 alias ys="yarn start"
 alias ysb="yarn storybook"
 alias yt="yarn test"
+alias yw="yarn watch"
 alias unsetbase="git config --local --get-regexp '\.gh-resolved$' | cut -f1 -d' ' | xargs -L1 git config --unset "
 alias touchBarKill="sudo pkill TouchBarServer; sudo killall ControlStrip"
+alias ":vs"="tmux split-window -h"
 
 # Variables
 export PATH="$PATH:${HOME}/.local/bin"
-
 
 # fnm
 export PATH="$HOME/Library/Application Support/fnm:$PATH"

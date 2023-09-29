@@ -1,21 +1,58 @@
 # Git Cheatsheet
 
-Git worktree with bare repository
-mkdir <myproject>; cd myproject
+## Delete branch
+
+### Local
+
+```bash
+git branch -d feat/qr-code
+```
+
+### Remote
+
+```bash
+git push origin --delete feat/qr-code
+```
+
+## Git worktree with bare repository
+
+```bash
+mkdir <myproject>
+cd myproject
 git clone --bare <myproject> .bare
 ln -s .bare .git
 cd .bare
+git worktree add ../main main
+```
+
+## Worktree commands
+
+```bash
 git worktree add ../<name> <distant_branch>
-git worktree add ../<name> -b <new_branch> 
+git worktree add ../<name> -b <new_branch>
 git worktree remove ../<name>
 git worktree list
+```
 
+```bash
 git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+```
 
+# Rebase onto
+
+```bash
 git rebase --onto <new_base> <old_base> <branch>
+```
 
-# Delete cache entries
+## Delete already versioned file
 
+```bash
+git rm --cached <file>
+```
+
+## Delete cache entries
+
+```bash
 gh api \
   -H "Accept: application/vnd.github+json" \
   /repos/OWNER/REPO/actions/caches \
@@ -29,3 +66,4 @@ gh api \
     --method DELETE \
     -H "Accept: application/vnd.github.v3+json" \
     /repos/OWNER/REPO/actions/caches/{}
+```

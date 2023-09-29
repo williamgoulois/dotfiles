@@ -1,6 +1,7 @@
 os:
-  editCommand: "lvim"
-  openCommand: "codium -rg {{filename}}"
+  edit: "lvim {{filename}}"
+  editInTerminal: true
+  open: "codium -rg {{filename}}"
 customCommands:
   - key: "f"
     command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
@@ -9,7 +10,7 @@ customCommands:
   - key: "E"
     description: "Add empty commit"
     context: "commits"
-    command: 'git commit --allow-empty -m "empty commit"'
+    command: 'git commit --allow-empty -m "test: empty commit"'
     loadingText: "Committing empty commit..."
   - key: "C"
     command: "git cz c"
