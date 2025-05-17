@@ -1,7 +1,16 @@
+quitOnTopLevelReturn: true
 os:
-  edit: "lvim {{filename}}"
+  edit: "nvim {{filename}}"
+  # edit: "zed {{filename}}"
+  editAtLine: "zed {{filename}}:{{line}}"
   editInTerminal: true
   open: "codium -rg {{filename}}"
+keybinding:
+  universal:
+    nextTab: ")"
+    prevTab: "("
+    increaseRenameSimilarityThreshold: ""
+    decreaseRenameSimilarityThreshold: ""
 customCommands:
   - key: "f"
     command: "git difftool -y {{.SelectedLocalCommit.Sha}} -- {{.SelectedCommitFile.Name}}"
@@ -52,18 +61,14 @@ customCommands:
           - value: "push"
           - value: "push --force-with-lease"
           - value: "push --force"
-
-  - key: "r"
-    prompts:
-      - type: "input"
-        title: "Rename stash"
-        initialValue: "{{.SelectedStashEntry.Name}}"
-    command: "git stash drop {{.SelectedStashEntry.RefName}} | sed -E 's/.*\\(([0-9a-f]+)\\).*/\\1/' | xargs git stash store -m '{{index .PromptResponses 0}}'"
-    context: stash
+# Difft
+# git:
+#   paging:
+#     externalDiffCommand: difft --color=always
 git:
   paging:
     colorArg: always
-    pager: delta --features side-by-side --syntax-theme 'Visual Studio Dark+' --file-decoration-style=none --hunk-header-style=omit --paging=never
+    pager: delta --features side-by-side --dark --syntax-theme 'Visual Studio Dark+' --file-decoration-style=none --hunk-header-style=omit --paging=never
   parseEmoji: true
   diffContextSize: 4 # how many lines of context are shown around a change in diffs
 gui:

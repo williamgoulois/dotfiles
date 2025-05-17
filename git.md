@@ -67,3 +67,13 @@ gh api \
     -H "Accept: application/vnd.github.v3+json" \
     /repos/OWNER/REPO/actions/caches/{}
 ```
+
+## SSH
+
+```bash
+ssh-keygen -t ed25519 # -C "william.goulois@fabernovel.com"
+# set file name and passphrase
+tr -d '\n' < ~/.ssh/id_ed25519.pub | pbcopy
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
+nvim ~/.ssh/config # add Host with IdentityFile
+```

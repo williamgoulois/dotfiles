@@ -1359,19 +1359,19 @@
   "githubPullRequests.queries": [
     {
       "label": "Waiting For My Review",
-      "query": "is:open review-requested:${user}"
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
     {
       "label": "Assigned To Me",
-      "query": "is:open assignee:${user}"
+      "query": "repo:${owner}/${repository} is:open assignee:${user}"
     },
     {
       "label": "Created By Me",
-      "query": "is:open author:${user}"
+      "query": "repo:${owner}/${repository} is:open author:${user}"
     },
     {
       "label": "Mentioned Me",
-      "query": "is:open mentions:${user}"
+      "query": "repo:${owner}/${repository} is:open mentions:${user}"
     }
   ],
   "peacock.favoriteColors": [
@@ -1482,10 +1482,15 @@
   ],
   // Projet GL
   "files.associations": {
+    "*.sqlbook": "sql",
+    "*.ndjson": "jsonl",
+    "*.dbclient-js": "javascript",
+    "*.ejs": "html",
     "*.deca": "java",
     "**/.i3/config": "i3",
     "**/i3/**": "i3",
-    "*.env.local": "env"
+    "*.env.local": "env",
+    ".env*": "dotenv"
   },
   "terminal.integrated.shell.linux": "/bin/bash",
   "[javascript]": {
@@ -1542,6 +1547,7 @@
   // "java.home": "C:\\Program Files\\AdoptOpenJDK\\jdk-8.0.265.01-hotspot",
   "files.insertFinalNewline": true,
   "workbench.editorAssociations": {
+    "*.copilotmd": "vscode.markdown.preview.editor",
     "*.jpeg": "imagePreview.previewEditor",
     "*.md": "default",
     "*.svg": "default",
@@ -1566,13 +1572,12 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "vscode-neovim.neovimExecutablePaths.darwin": "/opt/homebrew/bin/nvim",
-  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.local/share/lunarvim/lvim/utils/lv-vscode/init.vim",
+  "vscode-neovim.neovimInitVimPaths.darwin": "$HOME/.config/nvim/init.lua",
   "vscode-neovim.neovimExecutablePaths.linux": "/usr/local/bin/nvim",
   "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/init.vim",
   "git.autofetch": true,
   "redhat.telemetry.enabled": false,
   "zenMode.centerLayout": false,
-  "zenMode.hideTabs": false,
   "zenMode.silentNotifications": false,
   "editor.minimap.enabled": false,
   "svg.preview.mode": "svg",
@@ -1590,7 +1595,7 @@
   "codestream.email": "william.goulois@fabernovel.com",
   "workbench.iconTheme": "material-icon-theme",
   "snyk.yesWelcomeNotification": false,
-  "snyk.token": "{{ .snykToken }}",
+  "snyk.token": "TODO",
   "snyk.yesTelemetry": false,
   "snyk.yesCrashReport": false,
   "debug.javascript.autoAttachFilter": "always",
@@ -1610,7 +1615,8 @@
   "remote.SSH.remotePlatform": {
     "de1297f4-c7fb-4450-87d1-f598c625e3a3.fabernovel.f20t.feature---office-listing.csb": "linux",
     "sandbox.lkr817.csb": "linux",
-    "sandbox.26zpd9.csb": "linux"
+    "sandbox.26zpd9.csb": "linux",
+    "branch.6f1nnb.faberNovel.f20t.feature---office-listing.csb": "linux"
   },
   "workbench.colorTheme": "dark-plus-syntax",
   "totalTypeScript.hideAllTips": false,
@@ -1652,9 +1658,135 @@
     "/Users/William.Goulois/maat/user-data-role",
     "/Users/William.Goulois/podium-hub-api/develop",
     "/Users/William.Goulois/maat/master",
-    "/Users/William.Goulois/podium-hub-web/develop"
+    "/Users/William.Goulois/podium-hub-web/develop",
+    "/Users/william.goulois/maat/review",
+    "/Users/william.goulois/maat/search-client",
+    "/Users/william.goulois/gittest",
+    "/Users/william.goulois/formation-front-training",
+    "/Users/william.goulois/formation-front",
+    "/Users/william.goulois/pesaurus_test/test4",
+    "/Users/william.goulois/pes_test/test",
+    "/Users/william.goulois/maat/edit-page",
+    "/Users/william.goulois/maat/master",
+    "/Users/william.goulois/maat/lock-order-viz",
+    "/Users/william.goulois/pesaurus_test/test18-3",
+    "/Users/william.goulois/pesaurus",
+    "/Users/william.goulois/privateGPT",
+    "/Users/william.goulois/prismic-generator",
+    "/Users/william.goulois/podium-hub-api/develop/api",
+    "/Users/william.goulois/podium-hub-webapp",
+    "/Users/william.goulois/comet",
+    "/Users/william.goulois/eni/comet",
+    "/Users/william.goulois/saintgobain/app_local",
+    "/Users/william.goulois/hackathon/app_local",
+    "/Users/william.goulois/hackathon/continue",
+    "/Users/william.goulois/hackathon/aider",
+    "/Users/william.goulois/hackathon/nextjs-docker-compose",
+    "/Users/william.goulois/.config/nvim",
+    "/Users/william.goulois/advent_calendar",
+    "/Users/william.goulois/trpc-playground"
   ],
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.experimental.showMoves": true
+  "diffEditor.experimental.showMoves": true,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "editor.renderWhitespace": "all",
+  "nxConsole.showNodeVersionOnStartup": false,
+  "editor.accessibilitySupport": "off",
+  "codesandbox.currentWorkspace": "de1297f4-c7fb-4450-87d1-f598c625e3a3",
+  "supermaven.enable": {
+    "*": true
+  },
+  "continue.enableTabAutocomplete": false,
+  "editor.tokenColorCustomizations": {
+    "[*Light*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#000"
+          }
+        }
+      ]
+    },
+    "[*Dark*]": {
+      "textMateRules": [
+        {
+          "scope": "ref.matchtext",
+          "settings": {
+            "foreground": "#fff"
+          }
+        }
+      ]
+    },
+    "textMateRules": []
+  },
+  "dotenv.enableAutocloaking": false,
+  "codeium.enableCodeLens": false,
+  "codeium.enableConfig": {
+    "*": true
+  },
+  "continue.enableQuickActions": true,
+  "continue.telemetryEnabled": false,
+  "snyk.folderConfigs": [
+    {
+      "folderPath": "/Users/william.goulois/trpc-playground",
+      "baseBranch": "main",
+      "localBranches": ["main"]
+    }
+  ],
+  "supermaven.enableFixWithSupermaven": false,
+  "database-client.autoSync": true,
+  "remote.defaultExtensionsIfInstalledLocally": [
+    "GitHub.copilot",
+    "GitHub.copilot-chat",
+    "GitHub.vscode-pull-request-github"
+  ],
+  "mcp": {
+    "servers": {
+      "eni-atlassian": {
+        "type": "stdio",
+        "command": "uvx",
+        "args": [
+          "mcp-atlassian",
+          "--confluence-url=https://plenitude-fr-df.atlassian.net/wiki",
+          "--confluence-username=william.goulois@external.eni.com",
+          "--confluence-token=TODO",
+          "--jira-url=https://plenitude-fr-df.atlassian.net/",
+          "--jira-username=william.goulois@external.eni.com",
+          "--jira-token=TODO",
+          "--read-only"
+        ]
+      },
+      "git": {
+        "type": "stdio",
+        "command": "uvx",
+        "args": ["mcp-server-git"]
+      }
+    }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "roo-cline.allowedCommands": [
+    "npm test",
+    "npm install",
+    "tsc",
+    "git log",
+    "git diff",
+    "git show"
+  ],
+  "mssql.enableRichExperiencesDoNotShowPrompt": true,
+  "mssql.connectionGroups": [
+    {
+      "name": "ROOT",
+      "id": "9BF57BA4-F940-486D-AA00-1F69905E4BC7"
+    }
+  ],
+  "mssql.connections": [],
+  "yaml.schemas": {
+    "/Users/william.goulois/.vscode/extensions/continue.continue-1.1.24-darwin-arm64/config-yaml-schema.json": [
+      ".continue/**/*.yaml"
+    ]
+  }
   // "powermode.enabled": true,
 }

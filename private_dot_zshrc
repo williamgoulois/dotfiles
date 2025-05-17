@@ -28,9 +28,8 @@ export FZF_CTRL_R_OPTS='
   --header "'\''word=exact \^word=start .ts\$=end !word=inverse"'
 
 export GPG_TTY=`tty`
-export EDITOR="lvim"
-export VISUAL="lvim"
-eval $(thefuck --alias)
+export EDITOR="nvim"
+export VISUAL="nvim"
 eval "$(rbenv init -)"
 
 SPACESHIP_PROMPT_ORDER=(
@@ -54,8 +53,8 @@ SPACESHIP_PROMPT_ORDER=(
   docker        # Docker section
   aws           # Amazon Web Services section
   venv          # virtualenv section
-  #conda         # conda virtualenv section
-  #pyenv         # Pyenv section
+  conda         # conda virtualenv section
+  pyenv         # Pyenv section
   #dotnet        # .NET section
   #ember         # Ember.js section
   #kubecontext   # Kubectl context section
@@ -73,8 +72,8 @@ SPACESHIP_GIT_STATUS_COLOR=145
 # VI Mode
 bindkey -v
 KEYTIMEOUT=1
-SPACESHIP_VI_MODE_INSERT="\uf8ea"
-SPACESHIP_VI_MODE_NORMAL="\uf6b5"
+SPACESHIP_VI_MODE_INSERT="\u270E"
+SPACESHIP_VI_MODE_NORMAL="\u2328"
 
 function zle-keymap-select zle-line-init # only reset cursor when init and select (not finish)
 {
@@ -102,6 +101,7 @@ bindkey -M viins '^[[A' history-substring-search-up
 bindkey -M viins '^[[B' history-substring-search-down
 
 # alias
+alias aider='branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "default"); timestamp=$(date "+%Y%m%d_%H%M"); mkdir -p ".aider.history/$(dirname "$branch")" ; aider --input-history-file ".aider.history/$branch-$timestamp.input.md" --chat-history-file ".aider.history/$branch-$timestamp.chat.md"'
 alias :q="tmux kill-pane"
 alias bc="brew cleanup"
 alias bd="brew doctor"
@@ -114,10 +114,8 @@ alias bs="brew services"
 alias bsr="brew services restart"
 alias bu="brew update"
 alias bug="brew upgrade"
-alias c="clear"
-alias cl="clear"
-alias claer="clear"
-alias clera="clear"
+alias c="code"
+alias ci="code-insiders"
 alias cx="chmod +x"
 alias dc="docker compose"
 alias dcd="docker compose down -v"
@@ -127,7 +125,6 @@ alias dps="docker ps --format 'table {{.Names}}\t{{.Status}}'"
 alias e="exit"
 # alias ee="espanso edit"
 # alias er="espanso restart"
-alias f="fuck"
 alias g="git status"
 alias ga="git add ."
 alias gb="git branch -v"
@@ -137,7 +134,7 @@ alias gcl="git clone"
 alias gcn="git commit -S --no-verify -m"
 alias gco="git checkout -b"
 alias gd="git diff"
-alias gex="lvim .git/info/exclude"
+alias gex="nvim .git/info/exclude"
 alias gf="git fetch --all"
 alias gl="git pull"
 alias gp="git push"
@@ -169,14 +166,14 @@ alias lg="lazygit"
 alias ll="lsd --group-dirs first -Al"
 alias ls="lsd --group-dirs first"
 alias lt="lsd --group-dirs last -A --tree"
-alias n="lvim"
-alias nk="lvim ~/.config/karabiner/karabiner.json"
-alias nl="lvim ~/.config/lvim/config.lua"
-alias np="lvim package.json"
-alias npc="lvim +PackerCompile"
-alias nps="lvim +PackerSync"
-alias nt="lvim ~/.config/tmux/tmux.conf"
-alias nz="lvim ~/.zshrc"
+alias n="nvim"
+alias nk="nvim ~/.config/karabiner/karabiner.json"
+alias np="nvim package.json"
+alias nt="nvim ~/.config/tmux/tmux.conf"
+alias nz="nvim ~/.zshrc"
+alias pnpm7="pnpx pnpm@latest-7"
+alias pnpm8="pnpx pnpm@latest-8"
+alias pnpm9="pnpx pnpm@latest-9"
 alias pnx="pnpm exec nx"
 alias pni="pnpm install"
 alias pna="pnpm add"
@@ -192,7 +189,7 @@ alias tat="tmux attach -t"
 alias tl="tmux list-sessions"
 alias tn='tmux new -s `(pwd | sed "s/.*\///g")`'
 alias tns="tmux new -s"
-alias vt="lvim ~/.config/tmux/tmux.conf"
+alias vt="nvim ~/.config/tmux/tmux.conf"
 alias y="yarn"
 alias ya="yarn add"
 alias yad="yarn add -D"
@@ -212,8 +209,6 @@ alias yf="yarn format"
 alias yg="yarn generate"
 alias ygt="yarn generate-types"
 alias yl="yarn lint"
-alias ym="yarn b run migration:migrate" #for mk2 only
-alias yo="yarn openapi-typescript http://localhost:3001/openapi/current.json --output src/core/generated/backend-spec.ts && yarn eslint --fix src/core/generated/ && yarn prettier --write src/core/generated" #for mk2 only
 alias yp="yarn preview"
 alias ys="yarn start"
 alias ysb="yarn storybook"
@@ -222,6 +217,7 @@ alias yw="yarn watch"
 alias unsetbase="git config --local --get-regexp '\.gh-resolved$' | cut -f1 -d' ' | xargs -L1 git config --unset "
 alias touchBarKill="sudo pkill TouchBarServer; sudo killall ControlStrip"
 alias ":vs"="tmux split-window -h"
+alias knvim="NVIM_APPNAME=kickstart nvim"
 
 # Variables
 export PATH="$PATH:${HOME}/.local/bin"
@@ -248,17 +244,50 @@ export LUNARVIM_RUNTIME_DIR=$HOME/.local/share/lunarvim
 export LUNARVIM_CONFIG_DIR=$HOME/.config/lvim
 export LUNARVIM_CACHE_DIR=$HOME/.cache/lvim
 
-export PNPM_HOME="$HOME/Library/pnpm"
-export PATH="$PNPM_HOME:$PATH"
-
 export PATH="$PATH:${HOME}/.cargo/bin"
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR=$(brew --prefix sdkman-cli)/libexec
+[[ -s "${SDKMAN_DIR}/bin/sdkman-init.sh" ]] && source "${SDKMAN_DIR}/bin/sdkman-init.sh"
 
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+# pnpm
+export PNPM_HOME="/Users/william.goulois/Library/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
+
+# pyenv
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+# pyenv end
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
+# The following lines have been added by Docker Desktop to enable Docker CLI completions.
+fpath=(/Users/william.goulois/.docker/completions $fpath)
+autoload -Uz compinit
+compinit
+# End of Docker CLI completions

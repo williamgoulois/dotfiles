@@ -5,9 +5,10 @@
 
 [core]
 	; editor = codium --wait
-  editor = lvim
+  editor = nvim
 	excludesfile = ~/.gitignore_global
 	ignorecase = false
+  pager= delta --features side-by-side --dark --syntax-theme 'Visual Studio Dark+' --file-decoration-style=none --hunk-header-style=omit --paging=never
 
 [push]
 	default = simple
@@ -17,12 +18,23 @@
 	enabled = true
 
 #Diff
+# NvimDiff2
+; [diff]
+; 	tool = nvimdiff2
+; [difftool]
+;   trustExitCode = true
+; [difftool "nvimdiff2"]
+;   cmd = -d $LOCAL $REMOTE
+
+#Difftastic
 [diff]
-	tool = nvimdiff2
+	tool = difftastic 
 [difftool]
-  trustExitCode = true
-[difftool "nvimdiff2"]
-  cmd = -d $LOCAL $REMOTE
+  prompt = false
+[difftool "difftastic"]
+  cmd = difft "$LOCAL" "$REMOTE"
+[pager]
+  difftool = true
 
 #Merge
 [merge]
@@ -31,7 +43,7 @@
 	tool = nvimdiff4 
 # Vanilla merge
 [mergetool "nvimdiff4"]
-  cmd = lvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
+  cmd = nvim -d $LOCAL $BASE $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
   trustExitCode = true
 # Fugitive merge
 ; [mergetool "nfugitive"]
@@ -48,6 +60,8 @@
 [alias]
   #resign commits starting from sha
   resign = rebase --exec 'git commit --amend --no-edit -n -S' -i
+  dft = difftool
+  dlog = "!f() { GIT_EXTERNAL_DIFF=difft git log -p --ext-diff; }; f"
 
 #Colors
 [color]
