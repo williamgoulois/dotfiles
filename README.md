@@ -70,22 +70,57 @@ pnpm add -g <pkg_1> <pkg_2> ...
 
 NB: There may be a better way (using `--json` when you list on previous machine maybe ?) but I didn't want to loose to much time on that.
 
-### Lunarvim (master)
+Output (22/05/25)
 
-```bash
-bash <(curl -s https://raw.githubusercontent.com/lunarvim/lunarvim/master/utils/installer/install.sh)
+```output
+@angular/cli
+@antfu/ni
+@anthropic-ai/claude-code
+@fsouza/prettierd
+@types/node
+ejs-lint
+emmet-ls
+esbuild
+eslint_d
+jsonlint
+nx
+nxls
+pnpm
+react-devtools
+ts-node
+typescript
+vercel
+yarn
 ```
 
+```bash
 sudo spctl --global-disable
+
 
 brew services start yabai
 
-rustup => cargo
+# rustup => cargo
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
-.cargo => .crates.toml .crates2.json env
 
-=> cargo install git-graph selene taplo-cli
+cargo install git-graph selene taplo-cli tree-sitter-cli
 
-pnpm add neovim tree-sitter-cli => lunarvim bad
 
 $(brew --prefix)/opt/fzf/install => fzf installation
+
+sdk install java
+
+luarocks install luacheck
+
+defaults write -g InitialKeyRepeat -int 10 # normal minimum is 15 (225 ms)
+defaults write -g KeyRepeat -int 1 # normal minimum is 2 (30 ms)
+```
+
+## Todo
+
+- Bundle all brew packages in a single file
+
+```bash
+brew bundle dump
+```
+
+- Copy .zsh_history, .config/chezmoi/chezmoi.toml, .ssh/config, .ssh/id_rsa, .ssh/id_rsa.pub
