@@ -19,3 +19,8 @@ type = "git-repo"
 url = "git@github.com:belak/prezto-contrib.git"
 [".zprezto/contrib".clone]
 args = ["--recurse-submodules"]
+
+["management"]
+type = "git-repo"
+url = "git@github.com:williamgoulois/management"
+refreshPeriod = "168h"
